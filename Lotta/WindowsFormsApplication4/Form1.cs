@@ -20,24 +20,28 @@ namespace Lotta
         private void Form1_Load(object sender, EventArgs e)
         {
             Monster Pikachu = new Monster("Pikachu", 10, 50, 20);
-            Monster Charmander = new Monster("Charmander", 56, 10,15);
-            Pikachu.attack(Charmander);
-            Pikachu.attack(Charmander);
-            Charmander.heal();
+            Monster Charmender = new Monster("Charmender", 56, 10,15);
+
+            Pikachu.attack(Charmender);
+            Charmender.attack(Pikachu);
+            Pikachu.heal();
+            Charmender.heal(Pikachu);
+            Pikachu.attack(Charmender);
+            Pikachu.attack(Charmender);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Monster Pikachu = new Monster("Strongbonna", 10, 50, 20);
+            Monster Pikachu = new Monster("Pikachu", 10, 50, 20);
 
             Pikachu.describe(textBox1);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Monster Charmander = new Monster("Charmander", 56, 10, 15);
+            Monster Charmender = new Monster("Charmender", 56, 10, 15);
 
-            Charmander.describe(textBox2);
+            Charmender.describe(textBox2);
         }
 
         

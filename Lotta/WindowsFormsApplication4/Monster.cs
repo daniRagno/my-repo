@@ -39,6 +39,42 @@ namespace Lotta
 
         }
 
+        public void heal(Monster target)
+        {
+            if (healHp == 0)
+            {
+                Console.WriteLine("Non hai il potere di curare nessuno");
+                return;
+            }
+
+            if (curHp <= 0)
+            {
+                Console.WriteLine("Non puoi curare nessuno da morto");
+                return;
+            }
+
+            if (target.curHp <= 0)
+            {
+                Console.WriteLine(target.name + " è esausto e non puoi resuscitarlo con la cura.");
+                return;
+            }
+
+            target.curHp += healHp;
+
+            if (target.curHp > target.maxHp)
+            {
+                target.curHp = target.maxHp;
+            }
+
+            Console.WriteLine(name + " usa cura su " + target.name);
+            Console.WriteLine(target.name + " è stato curato e ora ha " + target.curHp + "/" + target.maxHp + " HP");
+        }
+
+        public void heal()
+        {
+            heal(this);
+        }
+
         public void attack(Monster target)
         {
             if (target.curHp <= 0)
@@ -64,28 +100,6 @@ namespace Lotta
 
         }
 
-        public void heal()
-        {
-            if (curHp >= maxHp)
-            {
-                Console.WriteLine(name + " è già al massimo della vita.");
-                return;
-            }
-
-            Console.WriteLine(name + " si cura. ");
-            Console.WriteLine(name + " recupera " + healHp + " HP.");
-            curHp += healHp;
-
-            if (curHp >= maxHp)
-            {
-                curHp = maxHp;
-                Console.WriteLine(name + " ha recuperato tutta la vita.");
-            }
-            else
-            {
-                Console.WriteLine("a " + name + " rimangono " + curHp + " hp");
-            }
-
-        }
+        
     }
 }
