@@ -8,26 +8,55 @@ namespace Lotta
 {
     class Monster
     {
-        public string name;
-        public int maxHp;
-        public int curHp;
-        public int damage;
-        public int healHp;
+        private string _name;
+        public string name { get { return _name; } }
 
-        public Monster(string name, int maxHp, int damage, int healHp)
+        private int _maxHp;
+        public int maxHp
         {
-            this.name = name;
-            this.maxHp = maxHp;
+            get
+            {
+                return _maxHp;
+            }
+        }
+
+        private int _curHp;
+        public int curHp
+        {
+            set
+            {
+                if (value < 0) value = 0;
+                else if (value > _maxHp) value = _maxHp;
+                _curHp = value;
+            }
+
+            get
+            {
+                return _curHp;
+            }
+        }
+
+        public int damage;
+        public int healFactor;
+
+        public Monster(string name, int maxHp, int damage, int healFactor = 0)
+        {
+            _name = name;
+
+            if (maxHp < 1) maxHp = 1;
+            _maxHp = maxHp;
+
             curHp = maxHp;
+
             this.damage = damage;
-            this.healHp = healHp;
+            this.healFactor = healFactor;
             describe();
         }
 
         public string describe()
         {
            string output = " Questo è " + name + "\r\n";
-           output += " Hp :" + maxHp + "\r\n";
+           output += " Hp :" + _curHp + "\r\n";
            output += "Damage: " + damage + "\r\n";
 
             return output;
@@ -41,33 +70,33 @@ namespace Lotta
 
         public void heal(Monster target)
         {
-            if (healHp == 0)
+            if (healFactor == 0)
             {
                 Console.WriteLine("Non hai il potere di curare nessuno");
                 return;
             }
 
-            if (curHp <= 0)
+            if (_curHp <= 0)
             {
                 Console.WriteLine("Non puoi curare nessuno da morto");
                 return;
             }
 
-            if (target.curHp <= 0)
+            if (target._curHp <= 0)
             {
                 Console.WriteLine(target.name + " è esausto e non puoi resuscitarlo con la cura.");
                 return;
             }
 
-            target.curHp += healHp;
+            target._curHp += healFactor;
 
-            if (target.curHp > target.maxHp)
+            if (target._curHp > target._maxHp)
             {
-                target.curHp = target.maxHp;
+                target._curHp = target._maxHp;
             }
 
             Console.WriteLine(name + " usa cura su " + target.name);
-            Console.WriteLine(target.name + " è stato curato e ora ha " + target.curHp + "/" + target.maxHp + " HP");
+            Console.WriteLine(target.name + " è stato curato e ora ha " + target._curHp + "/" + target._maxHp + " HP");
         }
 
         public void heal()
@@ -77,7 +106,13 @@ namespace Lotta
 
         public void attack(Monster target)
         {
-            if (target.curHp <= 0)
+            if (_curHp <= 0)
+            {
+                Console.WriteLine("Non puoi attaccare nessuno da morto");
+                return;
+            }
+
+            if (target._curHp <= 0)
             {
                 Console.WriteLine(target.name + " è già esausto, non infierire.");
                 return;
@@ -87,15 +122,15 @@ namespace Lotta
             Console.WriteLine(name + " fa " + damage + " danni a " + target.name);
             target.curHp -= damage;
 
-            if (target.curHp <= 0)
+            if (target._curHp <= 0)
             {
-                target.curHp = 0;
+                target._curHp = 0;
                 Console.WriteLine(target.name + " è esausto.");
                 return;
             }
             else
             {
-                Console.WriteLine("a " + target.name + " rimangono " + target.curHp + " hp");
+                Console.WriteLine("a " + target.name + " rimangono " + target._curHp + " hp");
             }
 
         }
