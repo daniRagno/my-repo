@@ -8,38 +8,50 @@ namespace Esercizio_13_01_17
 {
     class Persona
     {
-        private string _nome;
-        public string nome { get { return _nome; } }
-
-        private string _cognome;
-        public string cognome { get { return _cognome; } }
+        public string nome { get; set; }
+       
+        public string cognome { get; set; }
 
         private int _anni;
-        public int anni { get { return _anni; } }
-
-
-        private string _codiceFiscale;
-        public string codiceFiscale { get { return _codiceFiscale; } }
-
-        public Persona(string nome, string cognome, int anni, string codiceFiscale)
+        public int anni
         {
-            _nome = nome;
+            get
+            {
+                return _anni;
+            }
 
-            _cognome = cognome;
-
-            if (anni < 1) anni = 1;
-            _anni = anni;
-
-            _codiceFiscale = codiceFiscale;
+            set
+            {
+                if (value <= 0) value = 1;
+                _anni = value;
+            }
         }
 
-        public string describe()
+        public string codiceFiscale
         {
-            string output = "Nome: " + nome + "\r\n";
-            output += "Anni: " + anni + "\r\n";
-            output += "CF: " + codiceFiscale + "\r\n";
+            get
+            {
+                return nome + cognome + anni.ToString();
+            }
+        }
 
-            return output;
+        public virtual string describe()
+        {
+            return
+                "nome: " + nome + System.Environment.NewLine +
+                "cognome: " + cognome + System.Environment.NewLine +
+                "anni: " + anni.ToString() + System.Environment.NewLine;
+        }
+
+        public Persona(string nome, string cognome, int anni)
+        {
+            this.nome = nome;
+            this.cognome = cognome;
+            this.anni = anni;
+        }
+        public override string ToString()
+        {
+            return this.nome + " " + this.cognome;
         }
 
     }

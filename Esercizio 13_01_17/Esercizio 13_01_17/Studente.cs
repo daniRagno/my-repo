@@ -8,12 +8,22 @@ namespace Esercizio_13_01_17
 {
     class Studente : Persona
     {
-        private string _sezione;
-        public string sezione { get { return _sezione; } }
+        public string sezione { get; set; }
 
-        public Studente(string nome, string cognome, int anni, string codiceFiscale, string sezione) : base (nome, cognome, anni, codiceFiscale)
+        public Studente(string nome, string cognome, int anni, string sezione) : base(nome, cognome, anni)
         {
-            _sezione = sezione;
+            this.sezione = sezione;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + " " + sezione;
+        }
+
+        public override string describe()
+        {
+            return base.describe() +
+                 "sezione: " + sezione + System.Environment.NewLine;
         }
     }
 }
