@@ -12,6 +12,8 @@ namespace Lotta
 {
     public partial class Form1 : Form
     {
+        private List<Monster> monsters = new List<Monster>();
+
         public Form1()
         {
             InitializeComponent();
@@ -19,32 +21,15 @@ namespace Lotta
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Monster strongbonna = new Monster("strongbonna", 10, 50, 20);
-            Monster charmender = new Monster("charmender", 56, 10,15);
-
-            strongbonna.attack(charmender);
-            charmender.attack(strongbonna);
-            strongbonna.heal();
-            strongbonna.curHp = 2442;
-            charmender.heal(strongbonna);
-            strongbonna.attack(charmender);
-            strongbonna.attack(charmender);
+            addMonster(new Monster("tizio", 200, 100));
+            Console.WriteLine(monsters[0].describe());
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private Monster addMonster(Monster m)
         {
-            Monster strongbonna = new Monster("strongbonna", 10, 50, 20);
-
-            strongbonna.describe(textBox1);
+            monsters.Add(m);
+            return m;
         }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Monster charmender = new Monster("charmender", 56, 10, 15);
-
-            charmender.describe(textBox2);
-        }
-
-        
     }
 }
+

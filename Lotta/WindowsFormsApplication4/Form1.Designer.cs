@@ -42,7 +42,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Monster 1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            
             // 
             // textBox1
             // 
@@ -51,7 +51,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(155, 98);
             this.textBox1.TabIndex = 1;
-            this.textBox1.TextChanged += new System.EventHandler(this.button1_Click);
+            
             // 
             // textBox2
             // 
@@ -69,7 +69,7 @@
             this.button2.TabIndex = 3;
             this.button2.Text = "Monster 2";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            
             // 
             // Form1
             // 
