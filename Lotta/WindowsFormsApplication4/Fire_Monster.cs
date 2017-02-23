@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lotta
+namespace WindowsFormsApplication4
 {
     class Fire_Monster : Monster
     {
