@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Lotta.Properties
+namespace ProvaVerifica_17_03_17.Properties
 {
 
 

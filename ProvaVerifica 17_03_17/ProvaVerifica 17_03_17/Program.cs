@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Lotta
+namespace ProvaVerifica_17_03_17
 {
     static class Program
     {
